@@ -13,6 +13,8 @@
 #include <sstream>
 #include <string>
 
+#define DEBUG false
+
 int ConvertNumericGradeToLetterGrade (int numeric_grade) 
 {
   if ( ! (numeric_grade / 60 ) ) 
@@ -35,7 +37,7 @@ int ConvertNumericGradeToLetterGrade (int numeric_grade)
 	  std::cout << "That's a B, as in \"Better luck next time.\"\n";
     return(0);
 	}
-	else if ( ! (numeric_grade / 100 ) )
+	else if ( (! (numeric_grade / 100 )) || numeric_grade == 100 )
 	{
 	  std::cout << "Congratulations on your A!\n";
     return(0);
@@ -68,7 +70,7 @@ int main()
 			}
 			else
 			{
-  			std::cout << "Numeric grade = " << numeric_grade << "\n";
+  			if ( DEBUG ) {std::cout << "Numeric grade = " << numeric_grade << "\n";}
 				ConvertNumericGradeToLetterGrade (numeric_grade);
 				return(0);
 			}

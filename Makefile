@@ -1,8 +1,14 @@
 default: all
-all: GradingProgram
+all: GradingProgram ColaMachine
+
+CC = g++
+CCFLAGS = -Wall -ansi
 
 GradingProgram: grading_program.cc
-	g++ -Wall -ansi grading_program.cc -o GradingProgram
+	$(CC) $(CFLAGS) grading_program.cc -o GradingProgram
+
+ColaMachine: cola_machine.cc
+	$(CC) $(CFLAGS) cola_machine.cc -o ColaMachine
 
 clean: 
-	rm -f GradingProgram
+	rm -f GradingProgram ColaMachine
