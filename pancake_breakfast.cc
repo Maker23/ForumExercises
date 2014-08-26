@@ -1,4 +1,8 @@
 /*
+	V2 : Now with structs
+
+*/
+/*
   Write a program that asks the user to enter the number of pancakes eaten 
 	for breakfast by 10 different people (Person 1, Person 2, ..., Person 10)
 	Once the data has been entered the program must analyze the data and output 
@@ -22,17 +26,22 @@
 #include <sstream>
 #include <string>
 
-#define DEBUG false
+#define DEBUG true
 
-std::string People[] = {
-	"Sam",
-	"Dale",
-	"Pat",
-	"Alex",
-	"Kim",
+struct persondata {
+	std::string	Name;
+	int 				NumPancakes;
 };
 
-int Pancakes[5];
+persondata People[] = {
+	{"Sam", },
+	{"Dale", },
+	{"Pat", },
+	{"Alex", },
+	{"Kim", },
+};
+
+/* ************************************************************************ */
 
 int validate_input(std::string Name)
 {
@@ -72,36 +81,32 @@ void collect_data()
 {	
   for (int i = 0; i<5; i++) 
 	{
-	  //std::cout << "  [" << i+1 << "]" << People[i] << "\n";
-	  Pancakes[i] = validate_input(People[i]);
+	  People[i].NumPancakes = validate_input(People[i].Name);
 	}
 }
 
-void BubbleSort(int Data[], int DataLen)
+void BubbleSort(persondata Data[], int DataLen)
 {
   /* This is not yet optimized, see http://en.wikipedia.org/wiki/Bubble_sort */
 	bool swapped;
-  int valone,valtwo;
-	std::string strone,strtwo;
+  persondata tmpdata;
 
 	do
 	{
 		swapped = false;
 		for (int i=1; i < DataLen; i++) {
-			if (Data[i-1] > Data[i] ){
+			if (Data[i-1].NumPancakes > Data[i].NumPancakes ){
 				if (DEBUG) 
 				{
-					std::cout << "swapping " << Data[i-1] << 
-					"  and " << Data[i] << "\n";
+					std::cout << "swapping " << Data[i-1].Name << ":" << Data[i-1].NumPancakes << 
+					"  and " << Data[i].Name << ":" << Data[i].NumPancakes << "\n";
 				}
-				valone=Data[i-1];
-				valtwo=Data[i];
-				Data[i-1]=valtwo;
-				Data[i]=valone;
-				strone=People[i-1];
-				strtwo=People[i];
-				People[i-1]=strtwo;
-				People[i]=strone;
+				tmpdata.Name=Data[i-1].Name;
+				tmpdata.NumPancakes=Data[i-1].NumPancakes;
+				Data[i-1].Name=Data[i].Name;
+				Data[i-1].NumPancakes=Data[i].NumPancakes;
+				Data[i].Name = tmpdata.Name;
+				Data[i].NumPancakes = tmpdata.NumPancakes;
 				swapped = true;
 			}
 		}
@@ -109,11 +114,12 @@ void BubbleSort(int Data[], int DataLen)
 
 }
 
+/* ************************************************************************ */
 int main()
 {
 	collect_data();
-	BubbleSort(Pancakes, 5);
+	BubbleSort(People, 5);
 	for (int i=0; i < 5; i++) {
-		std::cout << People[i] << " ate " << Pancakes[i] << " pancakes\n";
+		std::cout << People[i].Name << " ate " << People[i].NumPancakes << " pancakes\n";
 	}
 }
