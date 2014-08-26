@@ -42,7 +42,7 @@ int validate_input(std::string Name)
 	std::cin.exceptions(std::ios::failbit);
 	
 	while ( 1 ) {
-		std::cout << "How many pancakes did " << Name << " eat?[1-20]: ";
+		std::cout << "How many pancakes did " << Name << " eat? [0-20]: ";
 	  std::cin >> input_string;
 	  std::stringstream ss (input_string);
   	ss.exceptions(std::ios::failbit);
