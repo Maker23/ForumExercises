@@ -1,5 +1,18 @@
 From http://www.cplusplus.com/forum/articles/12974/
 
+
+[x]	Grading program								grading_program.cc
+[x]	Cola Machine									cola_machine.cc
+[x]	While (user == gullible)			user_patience.cc
+[x]	Pancake Glutton								pancake_breakfast.cc
+[x]	Bracketing Search							guess_a_number.cc
+[ ]	Tic Tac Toe
+[ ]	Dungeon Crawl
+[ ]	Fun with Functions
+[x]	Strings are your friends			reverse.cc
+[ ]	Graduation
+
+
 Suggested Study Order:
 
 • variables, data types, and numerical operators
